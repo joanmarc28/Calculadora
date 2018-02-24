@@ -8,13 +8,21 @@ import android.widget.TextView;
 
 public class Calculadora extends AppCompatActivity implements View.OnClickListener{
 
+    int operation = 0;
+    String antiguonum;
+    String antiguonum2;
+    String antiguonum3;
+    String antiguonum4;
+    String numnuevo;
+    float resultado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculadora);
 
         //cambio de git
-        Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btn11, btn12, btn13, btn14, btn15;
+        Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btn11, btn12, btn13, btn14, btn15, btn16, btn17;
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
         btn3 = (Button) findViewById(R.id.btn3);
@@ -30,6 +38,8 @@ public class Calculadora extends AppCompatActivity implements View.OnClickListen
         btn13 = (Button) findViewById(R.id.btn13);
         btn14 = (Button) findViewById(R.id.btn14);
         btn15 = (Button) findViewById(R.id.btn15);
+        btn16 = (Button) findViewById(R.id.btn16);
+        btn17 = (Button) findViewById(R.id.btn17);
 
         btn1.setOnClickListener(this);
         btn2.setOnClickListener(this);
@@ -46,6 +56,11 @@ public class Calculadora extends AppCompatActivity implements View.OnClickListen
         btn13.setOnClickListener(this);
         btn14.setOnClickListener(this);
         btn15.setOnClickListener(this);
+        btn16.setOnClickListener(this);
+        btn17.setOnClickListener(this);
+
+        TextView tvHello = (TextView) findViewById(R.id.txtr);
+        tvHello.setText("");
     }
 
     @Override
@@ -83,30 +98,44 @@ public class Calculadora extends AppCompatActivity implements View.OnClickListen
                 tvHello.setText(tvHello.getText()+"0");
                 break;
             case R.id.btn11:
-                float antiguonum = tvHello.getText();
+                antiguonum = tvHello.getText().toString();
                 tvHello.setText("");
-                int operation = 1;
+                operation = 1;
                 break;
             case R.id.btn12:
-                float antiguonum2 = tvHello.getText();
+                antiguonum2 = tvHello.getText().toString();
                 tvHello.setText("");
-                int operation = 2;
+                operation = 2;
                 break;
             case R.id.btn13:
-                float antiguonum3 = tvHello.getText();
+                antiguonum3 = tvHello.getText().toString();
                 tvHello.setText("");
-                int operation = 3;
+                operation = 3;
                 break;
             case R.id.btn14:
-                float antiguonum4 = tvHello.getText();
+                antiguonum4 = tvHello.getText().toString();
                 tvHello.setText("");
-                int operation = 4;
+                operation = 4;
                 break;
             case R.id.btn15:
-                Float numnuevo = tvHello.getText();
+                numnuevo = tvHello.getText().toString();
                 tvHello.setText("");
-                float resultado;
-                tvHello.setText(resultado);
+                if(operation == 1) {
+                    resultado = Float.parseFloat(antiguonum) + Float.parseFloat(numnuevo);
+                }else if(operation == 2) {
+                    resultado = Float.parseFloat(antiguonum2) - Float.parseFloat(numnuevo);
+                }else if(operation == 3) {
+                    resultado = Float.parseFloat(antiguonum3) / Float.parseFloat(numnuevo);
+                }else if(operation == 4) {
+                    resultado = Float.parseFloat(antiguonum4) * Float.parseFloat(numnuevo);
+                }
+                tvHello.setText(resultado+"");
+                break;
+            case R.id.btn16:
+                tvHello.setText("");
+                break;
+            case R.id.btn17:
+                tvHello.setText("");
                 break;
         }
     }
